@@ -33,6 +33,17 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data  
 
+  producer:   #Mastodon API-Kafka
+    build: ./ingestion   #construit l'image avec ingestion/Dockerfile
+    container_name: producer
+    profiles: ["stream"]
+    depends_on: [kafka]
+    env_file: .env #token + hashtags
+    environment:
+      KAFKA_BOOTSTRAP: kafka:9092
+      TOPIC: mastodon_stream
+    restart: unless-stopped    
+
   jupyter:
     image: quay.io/jupyter/pyspark-notebook:spark-3.5.3
     container_name: jupyter
