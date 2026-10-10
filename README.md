@@ -16,21 +16,7 @@
 
 Pipeline de données **temps re1el + batch** sur des toots Mastodon.
 
-## Architecture
 
-```mermaid
-flowchart LR
-    A[Mastodon API] -->|polling since_id| B[Producteur Python]
-    B -->|JSON, clé user_id| C[(Kafka<br/>mastodon_stream<br/>3 partitions)]
-    C --> D[Spark Structured Streaming<br/>parsing · filtres · fenêtres]
-    D -->|foreachBatch JDBC| E[(PostgreSQL)]
-    E --> F[Spark Batch<br/>agrégations · optimisation]
-    E --> G[Spark MLlib<br/>sentiment]
-    H[Sentiment140<br/>1,6 M tweets] -->|entraînement| G
-    F --> E
-    G --> E
-    E --> I[Jupyter<br/>Matplotlib / Seaborn]
-```
 
 | Partie | Contenu | Fichier |
 |---|---|---|
