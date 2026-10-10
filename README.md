@@ -144,11 +144,11 @@ SELECT count(*), max(event_time) FROM toots;
 
 ![Sentiment](notebooks/figures/1_sentiment_distribution.png)
 
-**Nombre de toots par heure** (3 derniers jours)
+**Nombre de toots par heure** (sur le 3 derniers jours)
 
 ![Toots par heure](notebooks/figures/2_toots_per_hour.png)
 
-**Top 15 des hashtags** – #ai domine largement
+**Top 15 des hashtags** – #ai on voit sa dominance
 
 ![Top hashtags](notebooks/figures/3_top_hashtags.png)
 
